@@ -12,7 +12,7 @@ pipeline {
         }
         stage("Deploy") {
             steps {
-		sh "sudo cp ./build /home/ubuntu/react-redux-study/"
+		sh "sudo cp -r ./build /home/ubuntu/react-redux-study/"
 		sh "docker stop 1.${env.BUILD_ID}"
 		sh "docker rm 1.${env.BUILD_ID}"
 		sh "docker rmi builder:1.${env.BUILD_ID}"
