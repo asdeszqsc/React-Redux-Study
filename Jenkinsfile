@@ -3,15 +3,11 @@ pipeline {
      stages {
         stage("Build") {
             steps {
-		sh "yarn cache clean"
-                sh "yarn"
-                sh "yarn build"
+		echo "Running ${env.BUILD_ID} on ${env.JENKINS_URL}"
             }
         }
         stage("Deploy") {
             steps {
-                sh "sudo rm -rf /home/ubuntu/test/"
-                sh "sudo cp -r ${WORKSPACE}/build/ /home/ubuntu/test/"
             }
         }
     }
