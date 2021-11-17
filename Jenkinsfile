@@ -3,7 +3,7 @@ pipeline {
      stages {
         stage("Build") {
             steps {
-		sh "docker build -t builder:${env.BUILD_ID}"
+		sh "docker build -t builder:${env.BUILD_ID} ."
 		sh "docker run -dit --name ${env.BUILD_ID} builder:${env.BUILD_ID}"
 		sh "docker cp ${BUILD_ID}:/app/build ./"
 		sh "mkdir /home/ubuntu/web-versions/${env.BUILD_ID}"
