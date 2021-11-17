@@ -3,19 +3,19 @@ pipeline {
      stages {
         stage("Build") {
             steps {
-		sh "docker build -t builder:${env.BUILD_ID} ."
-		sh "docker run -dit --name ${env.BUILD_ID} builder:${env.BUILD_ID}"
-		sh "docker cp ${BUILD_ID}:/app/build ./"
-		sh "mkdir /home/ubuntu/web-versions/${env.BUILD_ID}"
-		sh "cp ./build /home/ubuntu/web-versions/${env.BUILD_ID}/"
+		sh "docker build -t builder:1.${env.BUILD_ID} ."
+		sh "docker run -dit --name $1.{env.BUILD_ID} builder:1.${env.BUILD_ID}"
+		sh "docker cp $1.{BUILD_ID}:/app/build ./"
+		sh "mkdir /home/ubuntu/web-versions/1.${env.BUILD_ID}"
+		sh "cp ./build /home/ubuntu/web-versions/1.${env.BUILD_ID}/"
             }
         }
         stage("Deploy") {
             steps {
 		sh "cp ./build /home/ubuntu/react-redux-study/"
-		sh "docker stop ${env.BUILD_ID}"
-		sh "docker rm ${env.BUILD_ID}"
-		sh "docker rmi builder:${env.BUILD_ID}"
+		sh "docker stop 1.${env.BUILD_ID}"
+		sh "docker rm 1.${env.BUILD_ID}"
+		sh "docker rmi builder:1.${env.BUILD_ID}"
             }
         }
     }
