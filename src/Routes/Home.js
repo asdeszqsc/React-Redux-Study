@@ -6,7 +6,7 @@ function Home(props){
 
     return <div>
         <Test />
-		gdgd
+		gdgdgdgd
     </div>
 }
 export default withRouter(Home);
